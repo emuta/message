@@ -1,0 +1,26 @@
+# generate grpc pb file
+
+protoc \
+    -I . \
+    -I $GOPATH/src \
+    -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+    --go_out=plugins=grpc:. \
+    message/proto/message.proto
+
+# generate reverse-proxy
+
+protoc \
+    -I . \
+    -I $GOPATH/src \
+    -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+    --grpc-gateway_out=logtostderr=true:. \
+    message/proto/message.proto
+
+# generate swagger definitions
+
+protoc \
+    -I . \
+    -I $GOPATH/src \
+    -I $GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis \
+    --swagger_out=logtostderr=true:. \
+    message/proto/message.proto

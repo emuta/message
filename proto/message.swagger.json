@@ -1,0 +1,280 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "message/proto/message.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/messages": {
+      "get": {
+        "operationId": "ListMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageListResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "uuid_v4",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "app_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "topic",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "created_from",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "created_to",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "order_by",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      },
+      "post": {
+        "operationId": "CreateMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageMessage"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/messageCreateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      }
+    },
+    "/messages/{id}": {
+      "get": {
+        "operationId": "GetMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageMessage"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messageDeleteResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      }
+    },
+    "/messages/{id}/publish": {
+      "post": {
+        "operationId": "PublishMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/messagePublishResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "MessageService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "messageCreateRequest": {
+      "type": "object",
+      "properties": {
+        "uuid_v4": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string",
+          "format": "byte"
+        },
+        "emit": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "messageDeleteResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "messageListResponse": {
+      "type": "object",
+      "properties": {
+        "messages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/messageMessage"
+          }
+        }
+      }
+    },
+    "messageMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "uuid_v4": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "publishes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/messagePublishResponse"
+          }
+        }
+      }
+    },
+    "messagePublishResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "msg_id": {
+          "type": "string",
+          "format": "int64"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
