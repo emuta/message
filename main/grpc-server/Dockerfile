@@ -1,4 +1,4 @@
-FROM golang:alpine AS build
+FROM emuta/images:golang-audi AS build
 
 ENV GOBIN "/go/bin"
 
