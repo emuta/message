@@ -13,9 +13,9 @@ import (
 
 	"github.com/emuta/go-rabbitmq/pubsub/publisher"
 	
-	pb "message/proto"
-	"message/repository"
-	"message/server"
+	pb "github.com/emuta/message/proto"
+	"github.com/emuta/message/repository"
+	"github.com/emuta/message/server"
 )
 
 var (

@@ -3,8 +3,8 @@ package pbtype
 import (
     "github.com/golang/protobuf/ptypes"
 
-    pb "message/proto"
-    "message/model"
+    pb "github.com/emuta/message/proto"
+    "github.com/emuta/message/model"
 )
 
 func MessageProto(m *model.Message) *pb.Message {

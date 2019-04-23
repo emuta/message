@@ -8,7 +8,7 @@ import (
 	"github.com/jinzhu/gorm/dialects/postgres"
 	log "github.com/sirupsen/logrus"
 
-	"message/model"
+	"github.com/emuta/message/model"
 )
 
 type Repository struct {

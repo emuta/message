@@ -7,9 +7,9 @@ import (
 
 	"github.com/emuta/go-rabbitmq/pubsub/publisher"
 	
-	"message/pbtype"
-	pb "message/proto"
-	"message/repository"
+	"github.com/emuta/message/pbtype"
+	pb "github.com/emuta/message/proto"
+	"github.com/emuta/message/repository"
 )
 
 type messageServiceServer struct {
