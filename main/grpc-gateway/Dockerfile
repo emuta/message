@@ -1,10 +1,9 @@
-FROM emuta/images:golang-audi AS build
+FROM golang:alpine AS build
 
 WORKDIR /go
 
 RUN apk update && apk add git upx \
-    && go get -u github.com/emuta/go-rabbitmq/pubsub/publisher \
-    && go get -u github.com/emuta/message \
+    && go get -d -u github.com/emuta/message \
     && CGO_ENABLED=0 go build -ldflags '-w -s' -o server $GOPATH/src/github.com/emuta/message/main/grpc-gateway/main.go \
     && upx server \
     && apk del git && rm -rf /var/cache/apk
