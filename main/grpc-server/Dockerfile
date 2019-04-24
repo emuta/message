@@ -18,7 +18,7 @@ WORKDIR /usr/local/bin
 COPY --from=build /go/server .
 
 RUN apk update \
-    && add tzdata --no-cache \
+    && apk add tzdata --no-cache \
     && cp /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && rm -rf /var/cache/apk
