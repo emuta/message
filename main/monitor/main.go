@@ -129,7 +129,7 @@ func main() {
 
 			go func() {
 				resp, err := grpcClient.CreateMessage(context.Background(), &pb.CreateRequest{
-					UuIdV4: msg.MessageId,
+					UuidV4: msg.MessageId,
 					AppId:  msg.AppId,
 					Topic:  msg.Type,
 					Data:   msg.Body,
