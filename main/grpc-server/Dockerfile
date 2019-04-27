@@ -3,7 +3,6 @@ FROM emuta/images:golang-audi AS build
 WORKDIR /go
 
 RUN apk update && apk add git upx \
-    && go get -u github.com/emuta/go-rabbitmq/pubsub/publisher \
     && go get -u github.com/emuta/message \
     && CGO_ENABLED=0 go build -ldflags '-w -s' -o server /go/src/github.com/emuta/message/main/grpc-server/main.go \
     && upx server \

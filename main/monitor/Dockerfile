@@ -3,10 +3,10 @@ FROM emuta/images:golang-audi AS build
 WORKDIR /go
 
 RUN apk update && apk add git upx \
-    && go get -d -u github.com/emuta/message \
-    && CGO_ENABLED=0 go build -ldflags '-w -s' -o server /go/src/github.com/emuta/message/main/grpc-gateway/main.go \
+    && go get -u github.com/emuta/message \
+    && CGO_ENABLED=0 go build -ldflags '-w -s' -o server /go/src/github.com/emuta/message/main/monitor/main.go \
     && upx server \
-    && apk del git && rm -rf /var/cache/apk
+    && apk del git
 
 
 FROM alpine
