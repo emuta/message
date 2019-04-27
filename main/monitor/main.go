@@ -16,7 +16,6 @@ var (
 	brokerURL    string
 	exchangeName string
 	endpoint     string
-	client       pb.MessageServiceClient
 )
 
 func failOnError(err error, msg string) {
@@ -117,8 +116,8 @@ func main() {
 
 	// connect to grpc server
 	grpcConn, err := grpc.Dial(endpoint, grpc.WithInsecure())
-	failOnError(err)
-	grpcClient = pb.NewMessageServiceClient(grpcConn)
+	failOnError(err, "Failed to connect grpc server")
+	grpcClient := pb.NewMessageServiceClient(grpcConn)
 
 	log.Info("Connect to GRPC server success")
 
