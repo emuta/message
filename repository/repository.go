@@ -34,7 +34,7 @@ func (s *Repository) CreateMessage(ctx context.Context, uuidV4, appId, topic str
 	go func() {
 		defer close(ch)
 
-		if err := s.db.Take(&model.Message{}, "uid_v4 = ?", uuidV4).Error; err != nil {
+		if err := s.db.Take(&model.Message{}, "uuid_v4 = ?", uuidV4).Error; err != nil {
 			ch <- err
 
 			log.WithError(err).WithFields(log.Fields{
