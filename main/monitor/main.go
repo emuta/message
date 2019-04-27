@@ -128,7 +128,7 @@ func main() {
 		for msg := range msgs {
 
 			go func() {
-				resp, err := grpcClient.CreateMessage(context.Background(), &pb.CreateMessageReq{
+				resp, err := grpcClient.CreateMessage(context.Background(), &pb.CreateRequest{
 					UuIdV4: msg.MessageId,
 					AppId:  msg.AppId,
 					Topic:  msg.Type,
