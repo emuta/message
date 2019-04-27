@@ -136,10 +136,12 @@ func main() {
 				})
 				if err != nil {
 					log.WithError(err).Errorf("Failed to save message to db. Message<%s>", msg)
+					return
 				}
 
 				if err := msg.Ack(true); err != nil {
 					log.WithError(err).Warn(err, "Failed to reply ACK. Message<%s>", msg)
+					return
 				}
 
 				log.WithField("id", resp.Id).Info("Save message to db success")
