@@ -2,7 +2,7 @@ FROM emuta/images:golang-audi AS build
 
 WORKDIR /go
 
-RUN apk update && apk add git upx \
+RUN mkdir -p /var/cache/apk && apk add --update --no-cache git upx \
     && go get -d -u github.com/emuta/message \
     && CGO_ENABLED=0 go build -ldflags '-w -s' -o server /go/src/github.com/emuta/message/main/grpc-gateway/main.go \
     && upx server \
@@ -16,8 +16,7 @@ WORKDIR /usr/local/bin
 
 COPY --from=build /go/server .
 
-RUN apk update \
-    && apk add tzdata --no-cache \
+RUN apk add --update --no-cache tzdata\
     && cp /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone \
     && rm -rf /var/cache/apk
