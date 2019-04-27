@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 
+	"google.golang.org/grpc"
 	log "github.com/sirupsen/logrus"
 	"github.com/streadway/amqp"
 
@@ -128,7 +129,7 @@ func main() {
 		for msg := range msgs {
 
 			go func() {
-				resp, err := grpcClient.CreateMessage(context.Background(), &req.CreateMessageReq{
+				resp, err := grpcClient.CreateMessage(context.Background(), &pb.CreateMessageReq{
 					UuIdV4: msg.MessageId,
 					AppId:  msg.AppId,
 					Topic:  msg.Type,
