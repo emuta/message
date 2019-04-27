@@ -8,7 +8,7 @@ import (
 
 type Message struct {
 	Id    int64  `gorm:"primary_key:true"`
-	UuidV4 string
+	UuidV4 string `gorm:"column:uuid_v4"`
 	AppId string
 	Topic string
 	Data  postgres.Jsonb
