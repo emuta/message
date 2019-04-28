@@ -181,7 +181,7 @@ func (s *RabbitMQClient) newPbClient() error {
 	}
 	s.PbClient = pb.NewMessageServiceClient(conn)
 
-	log.Info("Connect to GRPC server success")
+	log.Info("Connected to GRPC server success")
 
 	return nil
 }
