@@ -42,7 +42,7 @@ type RabbitMQClient struct {
 	Queue        *amqp.Queue
 	URI          string
 	ExchangeName string
-	PbAddr string
+	PbAddr       string
 	PbClient     pb.MessageServiceClient
 }
 
@@ -50,7 +50,7 @@ func NewRabbitMQClient(uri, exchangeName, pbAddr string) *RabbitMQClient {
 	c := RabbitMQClient{
 		URI:          uri,
 		ExchangeName: exchangeName,
-		PbAddr: pbAddr,
+		PbAddr:       pbAddr,
 	}
 
 	if err := c.connect(); err != nil {
@@ -135,7 +135,7 @@ func (s *RabbitMQClient) declareQueue() error {
 	q, err := s.Channel.QueueDeclare(
 		"message.archive", // queue name
 		true,              // durable
-		true,              //delete when unused
+		true,              // delete when unused
 		false,             // exclusive
 		false,             // no wait
 		nil,               // arguments
@@ -167,7 +167,7 @@ func (s *RabbitMQClient) watchMessage() (<-chan amqp.Delivery, error) {
 		s.Queue.Name,              // queue
 		"message.archive.monitor", // consumer
 		false,                     // audo ack
-		false,                     //exclusive
+		false,                     // exclusive
 		false,                     // no local
 		false,                     // no wait
 		nil,                       // arguments
