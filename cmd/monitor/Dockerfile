@@ -6,6 +6,7 @@ ADD ./ ./cmd
 
 RUN apk add --update --no-cache git upx \
     && go get -u google.golang.org/grpc \
+    && go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway \
     && go get -u github.com/streadway/amqp \
     && go get -u github.com/sirupsen/logrus \
     && go get -u github.com/emuta/message \
