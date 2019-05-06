@@ -21,7 +21,7 @@ var (
 func init() {
 	flag.StringVar(&brokerURL, "broker", "amqp://guest:guest@rabbitmq:5672/", "The broker url for RabbitMQ connect")
 	flag.StringVar(&exchangeName, "exchange", "pubsub", "The exchange name of RabbitMQ used")
-	flag.StringVar(&endpoint, "endpoint", "message-grpc-server:3721", "The message GRP server endpoint")
+	flag.StringVar(&endpoint, "endpoint", "grpc-server:3721", "The message GRP server endpoint")
 	flag.Parse()
 
 	log.SetFormatter(&log.TextFormatter{
